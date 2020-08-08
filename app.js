@@ -1,3 +1,4 @@
+const path = require('path')
 const express = require("express");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db.js");
@@ -21,6 +22,10 @@ if (process.env.NODE_ENV === "development") {
 
 app.engine('.hbs', exphbs({defaultLayout: 'main', extname: '.hbs'}));
 app.set('view engine', '.hbs');
+
+//Static folder
+
+app.use(express.static(path.join(__dirname, 'public')))
 
 //Routes
 
