@@ -60,6 +60,13 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
+// setting global variable
+
+app.use(function (req, res, next) {
+  res.locals.user = req.user || null
+  next()
+})
+
 //Static folder
 
 app.use(express.static(path.join(__dirname, 'public')))
