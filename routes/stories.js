@@ -25,9 +25,9 @@ router.post("/", ensureAuth, async (req, res) => {
 });
 
 // @desc show all stories
-//@router GET /stories/add
+//@router GET /stories
 
-router.get("/stories", ensureAuth, async (req, res) => {
+router.get("/", ensureAuth, async (req, res) => {
   try {
     const stories = await Story.find({ status: 'public' })
     .populate('user')
@@ -36,7 +36,7 @@ router.get("/stories", ensureAuth, async (req, res) => {
 
     res.render('stories/index', {
       stories,
-      
+
     })
   } catch (error) {
     console.error(error)
